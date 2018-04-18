@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApi {
 
     @Reference(version = "1.0.0")
-    private IUserService userSerivce;
+    private IUserService userService;
 
     @GetMapping("/test")
     public Result getUsers() {
-        return new Result(ResultEnum.QUERY_SUCCESS, userSerivce.getUserList());
+        return new Result(ResultEnum.QUERY_SUCCESS, userService.getUserList());
     }
 }
