@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.sky.demo.dao.IUserDao;
 import com.sky.demo.entity.User;
 import com.sky.demo.service.IUserSerivce;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -15,9 +16,11 @@ public class UserServiceImpl implements IUserSerivce {
     @Resource
     private IUserDao userDao;
 
+    @Cacheable(value = "user")
     @Transactional(readOnly = true)
     @Override
     public List<User> getUserList() {
+        System.out.println("============================");
         return userDao.selectUserList();
     }
 }
