@@ -16,7 +16,7 @@ public class UserServiceImpl implements IUserSerivce {
     @Resource
     private IUserDao userDao;
 
-    @Cacheable(value = "user")
+    @Cacheable(value = "user", key = "'list'")
     @Transactional(readOnly = true)
     @Override
     public List<User> getUserList() {

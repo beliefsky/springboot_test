@@ -5,12 +5,10 @@ import com.sky.common.entity.Result;
 import com.sky.common.enums.ResultEnum;
 import com.sky.demo.service.IUserSerivce;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/")
 public class UserApi {
 
     @Reference(version = "1.0.0")
