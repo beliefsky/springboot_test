@@ -10,7 +10,7 @@ public class ApplicationException extends RuntimeException {
 
 
     public ApplicationException(ResultEnum validation) {
-        super();
+        super(validation.getDesc());
         this.errorCode = validation.getCode();
         this.errorMsg = validation.getDesc();
         this.data = null;
@@ -18,14 +18,14 @@ public class ApplicationException extends RuntimeException {
 
 
     public ApplicationException(int errorCode, String errorDesc) {
-        super();
+        super(errorDesc);
         this.errorCode = errorCode;
         this.errorMsg = errorDesc;
         this.data = null;
     }
 
     public ApplicationException(ResultEnum validation, Object data) {
-        super();
+        super(validation.getDesc());
         this.errorCode = validation.getCode();
         this.errorMsg = validation.getDesc();
         this.data = data;
@@ -33,7 +33,7 @@ public class ApplicationException extends RuntimeException {
 
 
     public ApplicationException(int errorCode, String errorDesc, Object data) {
-        super();
+        super(errorDesc);
         this.errorCode = errorCode;
         this.errorMsg = errorDesc;
         this.data = data;
