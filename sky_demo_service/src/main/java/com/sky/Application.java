@@ -18,5 +18,14 @@ public class Application {
 
         Utils.register(ApplicationException.class);
         SpringApplication.run(Application.class, args);
+        synchronized (Application.class) {
+            for (;;) {
+                try {
+                    Application.class.wait();
+                }catch (Exception e) {
+
+                }
+            }
+        }
     }
 }

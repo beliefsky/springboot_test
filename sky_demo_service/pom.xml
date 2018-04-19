@@ -31,10 +31,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.gitee.reger</groupId>
             <artifactId>spring-boot-starter-dubbo</artifactId>
             <version>${spring-boot-starter-dubbo.version}</version>
