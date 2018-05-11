@@ -4,6 +4,7 @@ import com.sky.common.enums.ResultEnum;
 
 public class ApplicationException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
     private final int errorCode;
     private final String errorMsg;
     private final Object data;
