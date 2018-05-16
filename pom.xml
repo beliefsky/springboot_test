@@ -11,9 +11,9 @@
 
     <modules>
         <module>sky_common</module>
-        <!-- <module>sky_web</module> -->
+        <module>sky_web</module>
         <module>sky_demo_api</module>
-        <!-- <module>sky_demo_server</module> -->
+        <module>sky_demo_server</module>
     </modules>
 
     <parent>

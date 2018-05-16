@@ -5,5 +5,4 @@ target/
 .project
 .settings/
 .vscode/
-.sts*
-.att*
+.factorypath
