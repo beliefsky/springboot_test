@@ -2,13 +2,16 @@ package com.sky.common.exception;
 
 import com.sky.common.enums.ResultEnum;
 
-public class ApplicationException extends RuntimeException {
+public class ApplicationException  extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
-    private final int errorCode;
-    private final String errorMsg;
-    private final Object data;
+    private int errorCode;
+    private String errorMsg;
+    private Object data;
 
+
+    public ApplicationException() {
+
+    }
 
     public ApplicationException(ResultEnum validation) {
         super(validation.getDesc());
@@ -49,6 +52,8 @@ public class ApplicationException extends RuntimeException {
         return this.errorCode;
     }
 
+
+
     /**
      * 获取错误提示信息
      *
@@ -65,5 +70,17 @@ public class ApplicationException extends RuntimeException {
      */
     public Object getData() {
         return data;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

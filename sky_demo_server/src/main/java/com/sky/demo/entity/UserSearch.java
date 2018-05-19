@@ -1,11 +1,19 @@
 package com.sky.demo.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
 import java.io.Serializable;
 
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Document(indexName = "tb_demo", type = "demo" )
+public class UserSearch implements Serializable  {
+
+    @Id
     private long    id;
+    @Field(searchAnalyzer = "ik_smart", analyzer = "ik_smart")
     private String  name;
+    @Field(searchAnalyzer = "ik_smart", analyzer = "ik_smart")
     private String  title;
 
     public long getId() {
