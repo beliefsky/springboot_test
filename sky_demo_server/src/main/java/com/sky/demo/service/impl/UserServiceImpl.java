@@ -25,13 +25,14 @@ public class UserServiceImpl implements IUserService {
 //    @Cacheable(value = "user", key = "'list'")
     @Override
     public List<User> getUserList() {
-        Iterable<UserSearch> userSearches = userRepository.findAll();
-
-        for (UserSearch item : userSearches) {
-            System.out.println("Id:" + item.getId() +"; name:" + item.getName() + "; title:" + item.getTitle());
-        }
+//        Iterable<UserSearch> userSearches = userRepository.findAll();
+//
+//        for (UserSearch item : userSearches) {
+//            System.out.println("Id:" + item.getId() +"; name:" + item.getName() + "; title:" + item.getTitle());
+//        }
         System.out.println("==========================");
-        userSearches = userRepository.search(new QueryStringQueryBuilder("圾4"));
+//        userSearches = userRepository.search(new QueryStringQueryBuilder("这是"));
+        List<UserSearch> userSearches = userRepository.findAllByTitleLike("这是");
         for (UserSearch item : userSearches) {
             System.out.println("Id:" + item.getId() +"; name:" + item.getName() + "; title:" + item.getTitle());
         }

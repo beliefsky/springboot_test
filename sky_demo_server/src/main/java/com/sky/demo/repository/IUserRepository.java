@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface IUserRepository extends ElasticsearchRepository<UserSearch, Long> {
 
+    List<UserSearch> findAllByTitleLike(String word);
 }
