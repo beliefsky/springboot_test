@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IUserDao {
 
-    @Select("SELECT id, `name`, title FROM tb_demo LIMIT 10")
+    @Select("SELECT id, username AS name FROM tb_user LIMIT 10")
     List<User> selectUserList();
 
     @Insert({
