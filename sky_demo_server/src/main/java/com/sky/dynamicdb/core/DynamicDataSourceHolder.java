@@ -10,7 +10,7 @@ public class DynamicDataSourceHolder {
         THREAD_LOCAL.set(name);
     }
 
-    public static String getDataSource() {
+    static String getDataSource() {
         if (null != USEFUL_DB) {
             return USEFUL_DB;
         }

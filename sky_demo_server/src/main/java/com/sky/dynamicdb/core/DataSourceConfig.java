@@ -2,7 +2,6 @@ package com.sky.dynamicdb.core;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -16,8 +15,6 @@ public class DataSourceConfig {
 
     @Autowired
     private DBProperties properties;
-    @Value("${dynamic.default.db:master}")
-    private String dynamicDefaultDB;
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
@@ -32,7 +29,7 @@ public class DataSourceConfig {
 
         List<HikariDataSource> hikaris = properties.getSlave();
 
-        for(HikariDataSource item: hikaris) {
+        for (HikariDataSource item : hikaris) {
             targetDataSources.put(item.getPoolName(), item);
         }
         DynamicDataSource dataSouce = new DynamicDataSource();
