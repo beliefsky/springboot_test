@@ -8,5 +8,4 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 public @interface TargetDataSource {
-    String value();
 }

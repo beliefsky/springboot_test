@@ -9,9 +9,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class DataSourceConfig<T> {
+public class DataSourceConfig {
 
     @Autowired
     private DBProperties properties;
@@ -21,22 +22,24 @@ public class DataSourceConfig<T> {
     @Bean(name = "dataSource")
     public DataSource dataSource() {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        Map<String, HikariDataSource> hikaris = properties.getHikari();
 
-        HikariDataSource hikariDataSource, masterDataSource = null;
-        for (Map.Entry<String, HikariDataSource> entry : hikaris.entrySet()) {
-            hikariDataSource = entry.getValue();
-            targetDataSources.put(hikariDataSource.getPoolName(), hikariDataSource);
-            if (hikariDataSource.getPoolName().equals(dynamicDefaultDB)) {
-                masterDataSource = hikariDataSource;
-            }
+        if (null != properties.getMaster()) {
+            targetDataSources.put(properties.getMaster().getPoolName(), properties.getMaster());
+        } else {
+            System.out.println("=======datasource master is null===========");
+            System.exit(1);
         }
 
-        DynamicDataSouce dataSouce = new DynamicDataSouce();
+        List<HikariDataSource> hikaris = properties.getSlave();
+
+        for(HikariDataSource item: hikaris) {
+            targetDataSources.put(item.getPoolName(), item);
+        }
+        DynamicDataSource dataSouce = new DynamicDataSource();
         dataSouce.setTargetDataSources(targetDataSources);
-        if (null != masterDataSource) {
-            dataSouce.setDefaultTargetDataSource(masterDataSource);
-        }
+        dataSouce.setDefaultTargetDataSource(properties.getMaster());
+
+
         return dataSouce;
     }
 

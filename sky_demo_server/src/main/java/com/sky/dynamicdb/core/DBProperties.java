@@ -4,19 +4,28 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import java.util.List;
 
 @Component
-@ConfigurationProperties(prefix = "dynamic")
+@ConfigurationProperties(prefix = "dynamic.hikari")
 public class DBProperties {
 
-    private Map<String, HikariDataSource> hikari;
+    private HikariDataSource master;
+    private List<HikariDataSource> slave;
 
-    public Map<String, HikariDataSource> getHikari() {
-        return hikari;
+    public HikariDataSource getMaster() {
+        return master;
     }
 
-    public void setHikari(Map<String, HikariDataSource> hikari) {
-        this.hikari = hikari;
+    public void setMaster(HikariDataSource master) {
+        this.master = master;
+    }
+
+    public List<HikariDataSource> getSlave() {
+        return slave;
+    }
+
+    public void setSlave(List<HikariDataSource> slave) {
+        this.slave = slave;
     }
 }

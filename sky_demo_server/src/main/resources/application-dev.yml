@@ -58,15 +58,16 @@ dynamic:
       username: postgres
       password: 123456
       pool-name: master
-    slave1:
-      jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
-      username: postgres
-      password: 123456
-      read-onely: true
-      pool-name: slave1
-    slave2:
-      jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
-      username: postgres
-      password: 123456
-      read-onely: true
-      pool-name: slave2
+
+    slave:
+      - jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+        username: postgres
+        password: 123456
+        read-onely: true
+        pool-name: slave1
+
+      - jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+        username: postgres
+        password: 123456
+        read-onely: true
+        pool-name: slave2

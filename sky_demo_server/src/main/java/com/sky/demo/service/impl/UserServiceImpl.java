@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
     @Resource
     private IUserRepository userRepository;
 
-    @TargetDataSource("slave")
+    @TargetDataSource
 //    @Cacheable(value = "user", key = "'list'")
     @Override
     public List<User> getUserList() {

@@ -1,12 +1,14 @@
 package com.sky.dynamicdb.multidb;
 
+import com.zaxxer.hikari.HikariDataSource;
+
+import java.util.List;
 import java.util.Random;
 
-public class DBLoadBalance {
+class DBLoadBalance {
 
-    public static String getDBWithRandom(String dbs) {
-        String[] dynamicDBs = dbs.split(",");
-        int num = new Random().nextInt(dynamicDBs.length);
-        return dynamicDBs[num];
+    static String getDBWithRandom(List<HikariDataSource> slaves) {
+        HikariDataSource tmp = slaves.get(new Random().nextInt(slaves.size()));
+        return tmp.getPoolName();
     }
 }
