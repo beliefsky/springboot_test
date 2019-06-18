@@ -1,0 +1,72 @@
+spring:
+  dubbo:
+    application:
+      name: demo_provider
+    base-package: com.sky
+    registry:
+      address: 127.0.0.1:2181
+      port: 20880
+
+#spring.datasource.url=jdbc:mysql://localhost:3306/db_test?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true&useSSL=false
+#spring.datasource.username=root
+#spring.datasource.password=123456
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#spring.datasource.url=jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+#spring.datasource.username=postgres
+#spring.datasource.password=123456
+#spring.datasource.driver-class-name=org.postgresql.Driver
+#
+#spring.datasource.type=com.zaxxer.hikari.HikariDataSource
+#spring.datasource.sql-script-encoding=utf-8
+#spring.datasource.hikari.pool-name=demo
+#spring.datasource.hikari.connection-test-query=SELECT 1
+#spring.datasource.hikari.minimum-idle=3
+#spring.datasource.hikari.maximum-pool-size=15
+#spring.datasource.hikari.idle-timeout=60000
+#spring.datasource.hikari.max-lifetime=1800000
+#spring.datasource.hikari.connection-timeout=30000
+#spring.datasource.hikari.read-only=false
+
+  cache:
+    type: redis
+    redis.time-to-live: 60s
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: localhost:9300
+
+mybatis:
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    map-underscore-to-camel-case: true
+dynamic:
+  datasource:
+    names: slave1,slave2
+    flag: slave
+  default:
+    db: master
+  hikari:
+    master:
+      jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+      username: postgres
+      password: 123456
+      pool-name: master
+    slave1:
+      jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+      username: postgres
+      password: 123456
+      read-onely: true
+      pool-name: slave1
+    slave2:
+      jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
+      username: postgres
+      password: 123456
+      read-onely: true
+      pool-name: slave2

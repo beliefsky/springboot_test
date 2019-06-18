@@ -8,6 +8,7 @@ import com.sky.demo.entity.User;
 import com.sky.demo.entity.UserSearch;
 import com.sky.demo.repository.IUserRepository;
 import com.sky.demo.service.IUserService;
+import com.sky.dynamicdb.multidb.TargetDataSource;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class UserServiceImpl implements IUserService {
     @Resource
     private IUserRepository userRepository;
 
+    @TargetDataSource("slave")
 //    @Cacheable(value = "user", key = "'list'")
     @Override
     public List<User> getUserList() {
@@ -32,10 +34,11 @@ public class UserServiceImpl implements IUserService {
 //        }
         System.out.println("==========================");
 //        userSearches = userRepository.search(new QueryStringQueryBuilder("这是"));
-        List<UserSearch> userSearches = userRepository.findAllByTitleLike("这是");
-        for (UserSearch item : userSearches) {
-            System.out.println("Id:" + item.getId() +"; name:" + item.getName() + "; title:" + item.getTitle());
-        }
+
+//        List<UserSearch> userSearches = userRepository.findAllByTitleLike("这是");
+//        for (UserSearch item : userSearches) {
+//            System.out.println("Id:" + item.getId() +"; name:" + item.getName() + "; title:" + item.getTitle());
+//        }
 
         return userDao.selectUserList();
     }

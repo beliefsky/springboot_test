@@ -2,14 +2,17 @@ package com.sky;
 
 import com.reger.dubbo.rpc.filter.Utils;
 import com.sky.common.exception.ApplicationException;
+import com.sky.dynamicdb.multidb.EnableMultiDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@EnableMultiDataSource
 @MapperScan("com.sky.**.dao")
 @EnableTransactionManagement
 @EnableCaching
