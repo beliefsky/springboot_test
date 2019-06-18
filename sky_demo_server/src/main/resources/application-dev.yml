@@ -47,11 +47,6 @@ mybatis:
     multiple-result-sets-enabled: true
     map-underscore-to-camel-case: true
 dynamic:
-  datasource:
-    names: slave1,slave2
-    flag: slave
-  default:
-    db: master
   hikari:
     master:
       jdbc-url: jdbc:postgresql://localhost:5432/db_beliefsky?serverTimezone=GMT%2b8&characterEncoding=utf8&useUnicode=true
