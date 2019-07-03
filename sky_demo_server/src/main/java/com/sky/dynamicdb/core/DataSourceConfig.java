@@ -8,7 +8,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DataSourceConfig {
@@ -27,9 +26,8 @@ public class DataSourceConfig {
             System.exit(1);
         }
 
-        List<HikariDataSource> hikaris = properties.getSlave();
 
-        for (HikariDataSource item : hikaris) {
+        for (HikariDataSource item : properties.getSlave()) {
             targetDataSources.put(item.getPoolName(), item);
         }
         DynamicDataSource dataSouce = new DynamicDataSource();
